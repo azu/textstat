@@ -14,6 +14,11 @@
   "version": "1.0.0",
   "description": "text statistics tool.",
   "main": "lib/index.js",
+  "files": [
+    "bin",
+    "lib",
+    "src"
+  ],
   "bin": {
     "textstat": "bin/cmd.js"
   },
@@ -40,6 +45,7 @@
   },
   "dependencies": {
     "object-assign": "^4.0.1",
+    "table": "^3.7.3",
     "textlint": "^4.5.2",
     "textlint-rule-helper": "^1.1.4",
     "unique-concat": "^0.2.2"

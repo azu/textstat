@@ -142,7 +142,7 @@ export default function (context) {
                 cp: calcCP({dokutenCount, kutenCount})
             });
             report(node, {
-                message: "平均が50、標準偏差が10とした読みやすさの偏差値",
+                message: "読みやすさの偏差値(平均50、標準偏差10、高いほど読みやすい)",
                 "日本文の読みやすさ": Math.round(result * 10) / 10
             });
         }
