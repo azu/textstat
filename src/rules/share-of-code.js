@@ -12,7 +12,7 @@ export default function (context) {
         },
         [Syntax.Document + ":exit"](node){
             var allText = getSource(node);
-            var percent = Math.round((code.length / allText.length) * 10) / 20;
+            var percent = Math.round((code.length / allText.length) * 100);
             report(node, {
                 "share of code": percent + "%"
             });
