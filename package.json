@@ -18,6 +18,9 @@
     "test": "test"
   },
   "scripts": {
+    "build": "babel --preset es2015 src --out-dir lib --source-maps",
+    "watch": "babel --preset es2015 src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -32,6 +35,10 @@
     "power-assert": "^1.1.0"
   },
   "dependencies": {
-    "textlint": "^4.1.1"
+    "kuromoji": "0.0.4",
+    "object-assign": "^4.0.1",
+    "textlint": "^4.5.2",
+    "textlint-rule-helper": "^1.1.4",
+    "unique-concat": "^0.2.2"
   }
 }
