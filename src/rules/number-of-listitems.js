@@ -12,7 +12,7 @@ export default function (context) {
         },
         [Syntax.Document + ":exit"](node){
             report(node, {
-                "number of ListItem": count
+                "number of List Items": count
             });
         }
     }
