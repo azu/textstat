@@ -44,10 +44,16 @@
     "power-assert": "^1.1.0"
   },
   "dependencies": {
+    "concat-stream": "^1.5.1",
+    "debug": "^2.2.0",
+    "mkdirp": "^0.5.1",
     "object-assign": "^4.0.1",
+    "optionator": "^0.6.0",
+    "rc-loader": "^1.0.0",
     "table": "^3.7.3",
     "textlint": "^4.5.2",
     "textlint-rule-helper": "^1.1.4",
+    "try-resolve": "^1.0.1",
     "unique-concat": "^0.2.2"
   }
 }
