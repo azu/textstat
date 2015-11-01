@@ -18,14 +18,6 @@ export default function tateishiRS({
     katakana,
     cp
     }) {
-    console.log({
-        sentence,
-        alphabet,
-        hiragana,
-        kanji,
-        katakana,
-        cp
-    });
     return (-0.12 * sentence)
         + (-1.37 * alphabet)
         + (7.4 * hiragana)
