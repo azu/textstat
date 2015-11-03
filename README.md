@@ -113,7 +113,7 @@ It mean that use the following format:
 
 textstat plugin is a set of rules and rulesConfig or customize parser.
 
-To enable plugin, put the "plugin-name` into `.textstat`.
+To enable plugin, put the `plugin-name` into `.textstat`.
 
 ```js
 // `.textstatrc`
@@ -140,6 +140,33 @@ To enable `ja` plugin and add to `.textstatrc`
     "plugins":[
         "ja"
     ]
+}
+```
+
+## Create Rule
+
+See 
+
+- [src/rules](src/rules)
+- [textlint/create-rules.md](https://github.com/textlint/textlint/blob/master/docs/create-rules.md "textlint/create-rules.md at master · textlint/textlint") is of help
+
+[`number-of-characters`](src/rules/number-of-characters.js) rule: 
+
+```
+export default function (context) {
+    let { Syntax, getSource, report } = context;
+    return {
+        // node's type 
+        // see https://github.com/textlint/textlint/blob/master/docs/txtnode.md
+        [Syntax.Document](node){
+            let text = getSource(node);
+            let charactersCount = text.length;
+            // report(node, { "key": "value" }); 
+            report(node, {
+                "number of characters": charactersCount
+            });
+        }
+    }
 }
 ```
 
