@@ -5,7 +5,6 @@ const objectAssign = require('object-assign');
 const loadConfig = require('./config-loader');
 const concat = require("unique-concat");
 const TextLintConfig = require("textlint/lib/config/config");
-import { loadRulesConfig } from "./plugin-loader";
 
 /**
  * Get rule keys from `.textlintrc` config object.
@@ -44,6 +43,35 @@ const defaultOptions = Object.freeze({
 // Priority: CLI > Code options > config file
 class Config extends TextLintConfig {
     /**
+     * @return {string} rc config filename
+     * it's name use as `.<name>rc`
+     */
+    static get CONFIG_FILE_NAME() {
+        return "textstat";
+    }
+
+    /**
+     * @return {string} config package prefix
+     */
+    static get CONFIG_PACKAGE_PREFIX() {
+        return "textstat-config-";
+    }
+
+    /**
+     * @return {string} rule package's name prefix
+     */
+    static get RULE_NAME_PREFIX() {
+        return "textstat-rule-";
+    }
+
+    /**
+     * @return {string} plugins package's name prefix
+     */
+    static get PLUGIN_NAME_PREFIX() {
+        return "textstat-plugin-";
+    }
+
+    /**
      * Create config object form command line options
      * See options.js
      * @param {object} cliOptions the options is command line option object. @see options.js
@@ -64,22 +92,28 @@ class Config extends TextLintConfig {
         // configFile is optional
         // => load .textlintrc
         // ===================
-        const configFileRawOptions = loadConfig(options.configFile) || {};
+        const configFileRawOptions = loadConfig(options.configFile, {
+                configPackagePrefix: this.CONFIG_PACKAGE_PREFIX,
+                configFileName: this.CONFIG_FILE_NAME
+            }) || {};
         const configFileRules = availableRuleKeys(configFileRawOptions.rules);
-        const configFileOptions = {
-            rulesConfig: configFileRawOptions.rules,
-            plugins: configFileRawOptions.plugins
-        };
-        // merge options and configFileOptions
-        // Priority options > configFile
-        const userOptions = objectAssign({}, configFileOptions, options);
+        const configFilePlugins = configFileRawOptions.plugins || [];
+        const configFileRulesConfig = configFileRawOptions.rules;
         // @type {string[]} rules rules is key list of rule names
         const optionRules = options.rules || [];
+        const optionRulesConfig = options.rulesConfig || {};
+        const optionPlugins = options.plugins || [];
+        // merge options and configFileOptions
+        // Priority options > configFile
         const rules = concat(optionRules, configFileRules);
-        const mergedOptions = objectAssign({}, userOptions, {
-            rules
+        const rulesConfig = objectAssign({}, configFileRulesConfig, optionRulesConfig);
+        const plugins = concat(optionPlugins, configFilePlugins);
+        const mergedOptions = objectAssign({}, defaultOptions, options, {
+            rules,
+            rulesConfig,
+            plugins
         });
-        return new Config(mergedOptions);
+        return new this(mergedOptions);
     }
 }
 module.exports = Config;

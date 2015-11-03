@@ -2,13 +2,24 @@
 "use strict";
 const tryResolve = require('try-resolve');
 const ObjectAssign = require("object-assign");
-const debug = require('debug')('textstat:plugin-loader');
+const debug = require('debug')('textlint:plugin-loader');
 const path = require("path");
-export function loadRulesConfig(baseDir = ".", pluginNames = []) {
+export function mapRulesConfig(rulesConfig, pluginName) {
+    let mapped = {};
+    Object.keys(rulesConfig).forEach(key => {
+        mapped[`${pluginName}/${key}`] = rulesConfig[key];
+    });
+    return mapped;
+}
+// load rulesConfig from plugins
+export default function loadRulesConfigFromPlugins(pluginNames = [], {
+    baseDir = ".",
+    pluginPrefix
+    }) {
     var pluginRulesConfig = {};
     pluginNames.forEach(pluginName => {
-        const textstatRuleName = `textstat-plugin-${ pluginName }`;
-        const pkgPath = tryResolve(path.join(baseDir, textstatRuleName)) || tryResolve(path.join(baseDir, pluginName));
+        const textlintRuleName = `${pluginPrefix}${ pluginName }`;
+        const pkgPath = tryResolve(path.join(baseDir, textlintRuleName)) || tryResolve(path.join(baseDir, pluginName));
         if (!pkgPath) {
             throw new ReferenceError(`${ pluginName } is not found`);
         }
@@ -17,7 +28,8 @@ export function loadRulesConfig(baseDir = ".", pluginNames = []) {
             debug(`${pluginName} has not rulesConfig`);
             return;
         }
-        pluginRulesConfig = ObjectAssign({}, pluginRulesConfig, plugin.rulesConfig);
+        // set config of <rule> to "<plugin>/<rule>"
+        ObjectAssign(pluginRulesConfig, mapRulesConfig(plugin.rulesConfig, pluginName));
     });
     return pluginRulesConfig;
 }
