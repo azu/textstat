@@ -158,7 +158,7 @@ Add `false` to the rule of `.textstatrc`
 > textstatで使える日本語向けの統計ルール集
 
 ```
-$ npm install textstat-plugin-ja textstat -D
+$ npm install textstat-plugin-ja textstat -g
 $ textstat --plugin ja README.md
 ```
 
