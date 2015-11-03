@@ -1,6 +1,6 @@
 # textstat
 
-textstat is a statistics tool for text and markdown, html.
+textstat is a statistics tool for text, markdown and html.
 
 textstat is built on top of [textlint](https://github.com/textlint/textlint "textlint").
 
