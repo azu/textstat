@@ -145,14 +145,18 @@ To enable `ja` plugin and add to `.textstatrc`
 
 ## Create Rule
 
+You can create new rule by JavaScript.
+
 See 
 
 - [src/rules](src/rules)
 - [textlint/create-rules.md](https://github.com/textlint/textlint/blob/master/docs/create-rules.md "textlint/create-rules.md at master · textlint/textlint") is of help
+    - textstat's rule is the same way of textlint.
+    - The difference between textstat and textlint is that second arguments is a object of `report(node, object)`.
 
 [`number-of-characters`](src/rules/number-of-characters.js) rule: 
 
-```
+```js
 export default function (context) {
     let { Syntax, getSource, report } = context;
     return {
