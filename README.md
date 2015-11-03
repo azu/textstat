@@ -3,6 +3,7 @@
 textstat is a statistics tool for text and markdown, html.
 
 textstat is built on top of [textlint](https://github.com/textlint/textlint "textlint").
+textstat is built on top of [textlint](https://github.com/textlint/textlint "textlint").
 
 ## Installation
 
@@ -12,7 +13,7 @@ textstat is built on top of [textlint](https://github.com/textlint/textlint "tex
 
 The same way of [textlint](https://github.com/textlint/textlint "textlint").
 
-The difference between textstat and textlint is that `textstat` has some build-in rules.
+The difference between textstat and textlint is that `textstat` has some built-in rules.
 
 ### CLI
 
@@ -137,6 +138,19 @@ To enable `ja` plugin and add to `.textstatrc`
 ```
 
 ## Tips
+
+### Disable built-in rules
+
+Add `false` to the rule of `.textstatrc`
+
+```js
+{
+    "rules": {
+        "file-size" : false,
+        "share-of-code" : false
+    }
+}
+```
 
 ### for japanese
 
