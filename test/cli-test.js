@@ -5,6 +5,6 @@ import cli from "../src/cli";
 describe("cli", function () {
     it("should run textstat", function () {
         var exitStatus = cli.execute(__dirname + "/fixtures/test.md");
-        assert(exitStatus, 0);
+        assert.equal(exitStatus, 0);
     });
 });
