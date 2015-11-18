@@ -45,13 +45,7 @@ const cli = {
      * @returns {int} The exit code for the operation.
      */
     execute(args, text) {
-        var currentOptions;
-        try {
-            currentOptions = options.parse(args);
-        } catch (error) {
-            console.error(error.message);
-            return 1;
-        }
+        var currentOptions = options.parse(args);
         const files = currentOptions._;
         if (currentOptions.version) {
             // version from package.json
@@ -62,15 +56,17 @@ const cli = {
             debug(`Running on ${ text ? 'text' : 'files' }`);
             const config = Config.initWithCLIOptions(currentOptions);
             const engine = new TextLintEngine(config);
-            const results = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
-            const output = engine.formatResults(results);
-            if (printResults(output, currentOptions)) {
-                return engine.isErrorResults(results) ? 1 : 0;
-            } else {
-                return 1;
-            }
+            const resultPromise = text ? engine.executeOnText(text) : engine.executeOnFiles(files);
+            return resultPromise.then(results => {
+                const output = engine.formatResults(results);
+                if (printResults(output, currentOptions)) {
+                    return engine.isErrorResults(results) ? 1 : 0;
+                } else {
+                    return 1;
+                }
+            });
         }
-        return 0;
+        return Promise.resolve(0);
     }
 };
 module.exports = cli;

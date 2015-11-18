@@ -26,8 +26,8 @@
     "test": "test"
   },
   "scripts": {
-    "build": "babel --preset es2015 src --out-dir lib --source-maps",
-    "watch": "babel --preset es2015 src --out-dir lib --watch --source-maps",
+    "build": "babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
     "prepublish": "npm run --if-present build",
     "test": "mocha"
   },
@@ -42,7 +42,7 @@
     "espower-babel": "^3.3.0",
     "mocha": "^2.3.3",
     "power-assert": "^1.1.0",
-    "textlint-tester": "^0.2.1",
+    "textlint-tester": "^0.4.1",
     "textstat-plugin-ja": "^1.0.2"
   },
   "dependencies": {
@@ -54,7 +54,7 @@
     "optionator": "^0.6.0",
     "rc-loader": "^1.0.0",
     "table": "^3.7.3",
-    "textlint": "^4.7.5",
+    "textlint": "^5.0.0",
     "textlint-rule-helper": "^1.1.4",
     "try-resolve": "^1.0.1",
     "unique-concat": "^0.2.2"

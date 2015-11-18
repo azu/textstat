@@ -6,10 +6,18 @@ var exitCode = 0,
 
 if (useStdIn) {
     process.stdin.pipe(concat({encoding: "string"}, function (text) {
-        exitCode = cli.execute(process.argv, text);
+        cli.execute(process.argv, text).then(function (exitCode) {
+            process.exit(exitCode);
+        }).catch(function (error) {
+            console.error(error)
+        });
     }));
 } else {
-    exitCode = cli.execute(process.argv);
+    cli.execute(process.argv).then(function (exitCode) {
+        process.exit(exitCode);
+    }).catch(function (error) {
+        console.error(error)
+    });
 }
 process.on("exit", function () {
     process.exit(exitCode);

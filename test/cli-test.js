@@ -4,7 +4,8 @@ import assert from "power-assert"
 import cli from "../src/cli";
 describe("cli", function () {
     it("should run textstat", function () {
-        var exitStatus = cli.execute(__dirname + "/fixtures/test.md");
-        assert.equal(exitStatus, 0);
+        return cli.execute(__dirname + "/fixtures/test.md").then(exitStatus => {
+            assert.equal(exitStatus, 0);
+        });
     });
 });
