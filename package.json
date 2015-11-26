@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/azu/textstat/issues"
   },
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "textstat is a statistics tool for text and markdown, html.",
   "main": "lib/index.js",
   "files": [
