@@ -8,4 +8,9 @@ describe("cli", function () {
             assert.equal(exitStatus, 0);
         });
     });
+    it("should handle html by default", function () {
+        return cli.execute(__dirname + "/fixtures/test.html").then(exitStatus => {
+            assert.equal(exitStatus, 0);
+        });
+    });
 });

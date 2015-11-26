@@ -25,7 +25,7 @@ const defaultOptions = Object.freeze({
     // rule package names
     rules: [],
     // plugin package names
-    plugins: [],
+    plugins: ["textlint-plugin-html"],
     // rules base directory that is related `rules`.
     rulesBaseDirectory: undefined,
     // ".textlint" file path
