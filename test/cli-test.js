@@ -9,6 +9,7 @@ describe("cli", function () {
         });
     });
     it("should handle html by default", function () {
+        this.timeout(10000);
         return cli.execute(__dirname + "/fixtures/test.html").then(exitStatus => {
             assert.equal(exitStatus, 0);
         });
