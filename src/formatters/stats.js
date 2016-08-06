@@ -2,7 +2,7 @@
 "use strict";
 import table, {getBorderCharacters} from 'table';
 import path from "path";
-export default function (results) {
+module.exports = function(results) {
 
     let output = "";
     let config = {
