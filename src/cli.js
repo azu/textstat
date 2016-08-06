@@ -60,7 +60,7 @@ const cli = {
             return resultPromise.then(results => {
                 const output = engine.formatResults(results);
                 if (printResults(output, currentOptions)) {
-                    return engine.isErrorResults(results) ? 1 : 0;
+                    return 0;
                 } else {
                     return 1;
                 }
