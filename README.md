@@ -1,3 +1,6 @@
+:warning: textstat is re-implemented: https://hthub.com/textlint/textstat
+
+
 # textstat
 
 textstat is plugable statistics tool for text, markdown and html.
