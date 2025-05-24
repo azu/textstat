@@ -1,4 +1,4 @@
-:warning: textstat is re-implemented: https://ghub.com/textlint/textstat
+:warning: textstat is re-implemented: https://github.com/textlint/textstat
 
 
 # textstat
